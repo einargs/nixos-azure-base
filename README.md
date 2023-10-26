@@ -8,6 +8,10 @@ nix flake lock --update-input <input-name>
 The backend should be hosted on port `8080`.
 
 # Deployment
+## Deploy website
+To deploy a website just use `scp -r` to copy the static files to
+`/www/static`.
+
 ## Setup
 You'll want to setup all of your environment variables:
 ```
