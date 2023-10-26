@@ -33,7 +33,7 @@
   in {
 
     # To get an image we can deploy to azure do:
-    # nix build .#nixosConfigurations.my-machine.config.formats.azure
+    # nix build .#nixosConfigurations.azure-vm.config.formats.azure
     nixosConfigurations.azure-vm = azure-image;
     # To rebuild once we're inside the machine we can do
     # sudo nixos-rebuild switch --flake .#azure-vm

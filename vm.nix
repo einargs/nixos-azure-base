@@ -19,7 +19,7 @@
   users.mutableUsers = false;
   networking.hostName = "backend";
 
-  users.users.mtsu = {
+  users.users.hack = {
     isNormalUser = true;
     home = "/home/hack";
     description = "admin";
@@ -27,11 +27,15 @@
       [ "wheel" # users in wheel are allowed to use sudo
         "disk" "audio" "video" "networkmanager" "systemd-journal"
       ];
+    # If you disable this it requires 
     hashedPassword = "$y$j9T$vsRtWjpE4252XW/6CASe3/$wptn/nGTeXFNI1jYEkx1ejVlz6DzoYSNMWDFfhLUF18";
   };
   system.stateVersion = "23.05";
   services.openssh = {
     enable = true;
+    # This requires you to use an ssh key. Not great for when you're in a
+    # hackathon.
+    # settings.PasswordAuthentication = false;
   };
   security.acme = {
     acceptTerms = true;

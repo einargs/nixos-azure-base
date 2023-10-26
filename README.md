@@ -91,8 +91,8 @@ creating the account.
 az sig image-version create --resource-group $RESOURCE_GROUP \
     --gallery-name $GALLERY --gallery-image-definition $IMAGE_NAME \
     --gallery-image-version 1.0.0 \
-    --os-vhd-storage-account /subscriptions/$SUBSCRIPTION/resourceGroups/imageGroups/providers/Microsoft.Storage/storageAccounts/$STORAGE_ACCOUNT \
-    --os-vhd-uri https://mtsutnhimss.blob.core.windows.net/$STORAGE_CONTAINER/nixos.vhd
+    --os-vhd-storage-account /subscriptions/$SUBSCRIPTION/resourceGroups/$RESOURCE_GROUP/providers/Microsoft.Storage/storageAccounts/$STORAGE_ACCOUNT \
+    --os-vhd-uri https://$STORAGE_ACCOUNT.blob.core.windows.net/$STORAGE_CONTAINER/nixos.vhd
 ```
 
 Now we can create the VM.
@@ -100,13 +100,14 @@ Now we can create the VM.
 az vm create -g $RESOURCE_GROUP -n $VM_NAME \
     --image /subscriptions/$SUBSCRIPTION/resourceGroups/$RESOURCE_GROUP/providers/Microsoft.Compute/galleries/$GALLERY/images/$IMAGE_NAME \
     --os-disk-delete-option Delete \
-    --size Standard_B1s \
+    --size Standard_B2s \
+    --generate-ssh-keys \
     --os-disk-size-gb 128
 ```
 
 Useful options for if we're redeploying an existing VM. Also, you'll want to
 take out the `--generate-ssh-keys`.
 ```
-    --public-ip-address audioBackend-ip \
-    --ssh-key-name audioBackend002_key \
+    --public-ip-address backend-ip \
+    --ssh-key-name backend_key \
 ```
