@@ -19,6 +19,8 @@
   users.mutableUsers = false;
   networking.hostName = "backend";
 
+  services.mysql.enable = true;
+
   users.users.hack = {
     isNormalUser = true;
     home = "/home/hack";
